@@ -43,7 +43,9 @@ func TestBubbleSort(t *testing.T) {
 }
 
 func BenchmarkBubbleSort(b *testing.B) {
+	b.StopTimer()
 	lists := generateInputList(b.N, inputSize)
+	b.StartTimer()
 	for _, list := range lists {
 		BubbleSort(list)
 	}
@@ -64,7 +66,9 @@ func TestSelectionSort(t *testing.T) {
 }
 
 func BenchmarkSelectionSort(b *testing.B) {
+	b.StopTimer()
 	lists := generateInputList(b.N, inputSize)
+	b.StartTimer()
 	for _, list := range lists {
 		SelectionSort(list)
 	}
@@ -85,7 +89,9 @@ func TestMergeSort(t *testing.T) {
 }
 
 func BenchmarkMergeSort(b *testing.B) {
+	b.StopTimer()
 	lists := generateInputList(b.N, inputSize)
+	b.StartTimer()
 	for _, list := range lists {
 		MergeSort(list)
 	}
@@ -106,7 +112,9 @@ func TestQuickSort(t *testing.T) {
 }
 
 func BenchmarkQuickSort(b *testing.B) {
+	b.StopTimer()
 	lists := generateInputList(b.N, inputSize)
+	b.StartTimer()
 	for _, list := range lists {
 		MergeSort(list)
 	}
