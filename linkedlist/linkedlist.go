@@ -35,13 +35,19 @@ func NewLinkedList[T any](values ...T) *LinkedList[T] {
 
 /** Element access */
 // `Front` returns a pointer to the value of the first element in the linked list
-func (list *LinkedList[T]) Front() T {
-	return list.head.value
+func (list *LinkedList[T]) Front() (value T, err error) {
+	if list.IsEmpty() {
+		return value, fmt.Errorf("Front: The list is empty")
+	}
+	return list.head.value, err
 }
 
 // `Front` returns a pointer to the value of the last element in the linked list
-func (list *LinkedList[T]) Back() T {
-	return list.tail.value
+func (list *LinkedList[T]) Back() (value T, err error) {
+	if list.IsEmpty() {
+		return value, fmt.Errorf("Back: The list is empty")
+	}
+	return list.tail.value, err
 }
 
 // `Begin` returns a pointer to the first element of the list

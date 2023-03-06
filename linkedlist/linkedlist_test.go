@@ -32,12 +32,12 @@ func TestRemove(t *testing.T) {
 	list.Insert(0, "xyz")
 	
 	list.Erase(0)
-	if got := list.Front(); got != "abc" {
+	if got, _ := list.Front(); got != "abc" {
 		t.Errorf("Got %v expected %v", got, "abc")
 	}
 	
 	list.Erase(0)
-	if got := list.Front(); got != "ghi" {
+	if got, _ := list.Front(); got != "ghi" {
 		t.Errorf("Got %v expected %v", got, "ghi")
 	}
 
