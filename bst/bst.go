@@ -3,10 +3,10 @@ package bst
 import "golang.org/x/exp/constraints"
 
 type Node[T constraints.Ordered] struct {
-	value T
+	value  T
 	parent *Node[T]
-	left *Node[T]
-	right *Node[T]
+	left   *Node[T]
+	right  *Node[T]
 }
 
 func (node *Node[T]) Value() T {
@@ -41,7 +41,7 @@ func (bst *BST[T]) GetRoot() *Node[T] {
 	return bst.root
 }
 
-func (bst *BST[T]) Search(value T) *Node[T]{
+func (bst *BST[T]) Search(value T) *Node[T] {
 	node := bst.root
 	for node != nil && node.value != value {
 		if value < node.value {
@@ -128,7 +128,7 @@ func (bst *BST[T]) Delete(value T) bool {
 		}
 		bst.transplant(node, successor)
 		successor.left = node.left
-		successor.left.parent = successor	
+		successor.left.parent = successor
 	}
 	return true
 }
