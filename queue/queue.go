@@ -1,36 +1,36 @@
 package queue
 
-import "github.com/minhdang26403/algo-ds/linkedlist"
+import list "github.com/minhdang26403/algo-ds/linkedlist"
 
-type Queue[T any] struct {
-	data linkedlist.LinkedList[T]
+type Queue struct {
+	data list.LinkedList[interface{}]
 }
 
-func NewQueue[T any]() *Queue[T] {
-	return &Queue[T]{data: *linkedlist.NewLinkedList[T]()}
+func NewQueue() *Queue {
+	return &Queue{data: *list.NewLinkedList[interface{}]()}
 }
 
-func (queue *Queue[T]) Size() int {
+func (queue *Queue) Size() int {
 	return queue.data.Size()
 }
 
-func (queue *Queue[T]) IsEmpty() bool {
+func (queue *Queue) IsEmpty() bool {
 	return queue.Size() == 0
 }
 
-func (queue *Queue[T]) Front() (T, error) {
+func (queue *Queue) Front() (interface{}, error) {
 	return queue.data.Front()
 }
 
-func (queue *Queue[T]) Back() (T, error) {
+func (queue *Queue) Back() (interface{}, error) {
 	return queue.data.Back()
 }
 
-func (queue *Queue[T]) Enqueue(value T) {
+func (queue *Queue) Enqueue(value interface{}) {
 	queue.data.PushBack(value)
 }
 
-func (queue *Queue[T]) Dequeue() (T, error) {
+func (queue *Queue) Dequeue() (interface{}, error) {
 	value, err := queue.data.Front()
 	queue.data.PopFront()
 	return value, err

@@ -3,7 +3,7 @@ package queue
 import "testing"
 
 func TestGeneral(t *testing.T) {
-	q := NewQueue[int]()
+	q := NewQueue()
 	q.Enqueue(1)
 	q.Enqueue(2)
 	q.Enqueue(3)
