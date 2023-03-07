@@ -5,20 +5,32 @@ import (
 	"strings"
 )
 
-type Node[T any] struct {
+type Node[T comparable] struct {
 	value T
 	next *Node[T]
 	prev *Node[T]
 }
 
-type LinkedList[T any] struct {
+func (node *Node[T]) Next() *Node[T] {
+	return node.next
+}
+
+func (node *Node[T]) Prev() *Node[T] {
+	return node.prev
+}
+
+func (node *Node[T]) Value() *T {
+	return &node.value
+}
+
+type LinkedList[T comparable] struct {
 	head *Node[T]
 	tail *Node[T]
 	size int
 }
 
 // `NewLinkedLit` instantiates a new list and adds the passed values, if any, to the list
-func NewLinkedList[T any](values ...T) *LinkedList[T] {
+func NewLinkedList[T comparable](values ...T) *LinkedList[T] {
 	list := &LinkedList[T]{}
 	for _, value := range values {
 		newNode := &Node[T]{value: value, prev: list.tail}
@@ -136,6 +148,29 @@ func (list *LinkedList[T]) Erase(index int) error {
 	}
 	list.size--
 	return nil
+}
+
+func (list *LinkedList[T]) EraseValue(value T) {
+	var prev *Node[T] = nil
+	node := list.head
+	for node != nil && node.value != value {
+		prev = node
+		node = node.next
+	}
+	if prev == nil {
+		list.head =	list.head.next
+		if list.head == nil {
+			list.tail = nil
+		}
+	} else {
+		prev.next = node.next
+		if prev.next != nil {
+			prev.next.prev = prev
+		} else {
+			list.tail = prev
+		}
+	}
+	list.size--
 }
 
 func (list *LinkedList[T]) PushBack(value T) {
